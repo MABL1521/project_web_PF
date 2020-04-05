@@ -1,0 +1,33 @@
+{% extends "layout_template.html" %}
+{% block title %}
+    {% if form.title.data %}
+        {{ form.title.data }}
+    {% else %}
+        Nuevo Entrada
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form class="form-group" action="" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.title.label }}
+                {{ form.title(size=128) }}<br>
+                {% for error in form.title.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.content.label }}
+                {{ form.content }}<br>
+                {% for error in form.content.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.submit() }}
+            </div>
+        </form>
+    </div>
+{% endblock %}
